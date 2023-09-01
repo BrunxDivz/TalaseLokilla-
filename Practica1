@@ -1,0 +1,54 @@
+// Creación audiovisual con lenguajes de programación sesión 3
+
+// prendemos supercollider
+s.boot;
+
+// apagamos supercollider
+s.quit;
+
+// medidores
+s.meter;
+s.scope;
+s.freqscope;
+
+// SynthDef
+(
+SynthDef(\misinte, {|frec=66, amp=666|
+	var sen, env;
+	sen=SinOsc.ar(frec, 0, amp);
+	env=EnvGen.kr(Env.new([0,9,13,7,3,0],[1,5,10,3,1]),doneAction:3);
+	Out.ar(0, sen*env)
+}).add
+);
+
+// Llamar a un SynthDef
+a=Synth(\misinte,[\frec, rrand(5,15)]);
+
+
+// liberar un Synth
+a.free;
+
+// ayuda de SynthDef
+SynthDef.help;
+
+// Envolventes
+Env.help;
+Env.new([0,6,2,10,0],[0.9,3,5,0.5]).plot;
+
+// Pdef o definicón de patrón
+Pattern.help;
+Pbind.help;
+Pdef.help;
+
+(
+~sec1=Pdef(\sec,
+	Pbind(\instrument, \misinte,
+		\dur, Pseq([0.25, 0.50, 0.125, 0.30, 0.7, 0.2, 2, 5], 1),
+		\frec, Pseq([66, 100, 55, 333, 40, 8, 666, 222],2),
+		\amp, 3
+	)
+);
+)
+
+~sec1.play;
+~sec1.stop;
