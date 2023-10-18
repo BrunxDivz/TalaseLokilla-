@@ -1,0 +1,1 @@
+voronoi(5,8,0.6).scale(0.5, 0.8, 4).color (2,1,9).add(osc(3, 0.6,0.8).scale(3,4,4).color(0.6,0.1,0.5)).out(o0)
