@@ -1,0 +1,7 @@
+voronoi(8,2,0.9)
+	.kaleid(4)
+	.color(2.3,0.4,0.999)
+	.rotate(0, 1)
+	.modulate(o0, () => mouse.x * 0.0003)
+	.scale(1.01)
+  	.out(o0)
